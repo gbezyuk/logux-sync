@@ -4,6 +4,8 @@
   "dictionary": [
     "Logux",
     "docdash",
-    "JSDoc"
+    "JSDoc",
+    "loopback",
+    "WebSocket"
   ]
 }

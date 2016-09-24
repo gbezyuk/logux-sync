@@ -38,7 +38,7 @@ module.exports = {
  */
 /**
  * Start connection. Connection should be in disconnected state
- * from the beggining and start connection only on this method call.
+ * from the beginning and start connection only on this method call.
  *
  * This method could be called again if connection moved to disconnected state.
  *
