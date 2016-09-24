@@ -9,6 +9,7 @@
     "WebSocket",
     "LocalPair",
     "nanoevents",
-    "js"
+    "js",
+    "JS"
   ]
 }
