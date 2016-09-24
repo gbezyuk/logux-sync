@@ -6,6 +6,9 @@
     "docdash",
     "JSDoc",
     "loopback",
-    "WebSocket"
+    "WebSocket",
+    "LocalPair",
+    "nanoevents",
+    "js"
   ]
 }
