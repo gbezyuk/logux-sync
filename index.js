@@ -17,6 +17,7 @@ module.exports = {
  *
  * @name Connection
  * @class
+ * @abstract
  */
 /**
  * Subscribe for log events. It should implement nanoevents API.
