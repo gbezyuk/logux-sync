@@ -7,6 +7,7 @@ module.exports = {
  * position and JS simple types in next.
  *
  * @typedef {Array} Message
+ * @property {string} 0 Message type
  */
 
 /**
