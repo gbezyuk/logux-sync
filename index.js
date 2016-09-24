@@ -51,7 +51,7 @@ module.exports = {
 /**
  * Finish current connection.
  *
- * After disconnection, conection could be started again
+ * After disconnection, connection could be started again
  * by @{link Connection#connect}.
  *
  * @return {undefined}
