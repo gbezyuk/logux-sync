@@ -1,5 +1,7 @@
 module.exports = {
-  LocalPair: require('./local-pair')
+  LocalPair: require('./local-pair'),
+  PassiveSync: require('./passive-sync'),
+  BaseSync: require('./base-sync')
 }
 
 /**
