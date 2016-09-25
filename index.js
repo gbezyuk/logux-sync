@@ -1,5 +1,6 @@
 module.exports = {
   PassiveSync: require('./passive-sync'),
+  ActiveSync: require('./active-sync'),
   LocalPair: require('./local-pair'),
   SyncError: require('./sync-error'),
   BaseSync: require('./base-sync')
