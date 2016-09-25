@@ -28,7 +28,7 @@
     "lint-staged": "lint-staged",
     "spellcheck": "npm run docs && yaspeller *.md docs/*.html",
     "clean": "rimraf docs/ coverage/",
-    "lint": "eslint *.js test/*.js",
+    "lint": "eslint *.js test/*.js messages/*.js",
     "docs": "jsdoc --configure .jsdocrc *.js",
     "test": "jest --coverage && npm run lint && npm run spellcheck"
   },
@@ -43,7 +43,7 @@
     "extends": "standard",
     "rules": {
       "valid-jsdoc": "error",
-      "no-new": "off"
+      "max-len": [2, 80]
     },
     "env": {
       "jest": true
