@@ -1,6 +1,7 @@
 module.exports = {
-  LocalPair: require('./local-pair'),
   PassiveSync: require('./passive-sync'),
+  LocalPair: require('./local-pair'),
+  SyncError: require('./sync-error'),
   BaseSync: require('./base-sync')
 }
 
