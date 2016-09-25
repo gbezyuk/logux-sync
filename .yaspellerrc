@@ -9,6 +9,15 @@
     "WebSocket",
     "LocalPair",
     "nanoevents",
+    "BaseSync",
+    "ActiveSync",
+    "PassiveSync",
+    "SyncError",
+    "unsubscribe",
+    "authCallback",
+    "errorListener",
+    "otherHost",
+    "otherProtocol",
     "js",
     "JS"
   ]
