@@ -20,6 +20,8 @@
     "otherProtocol",
     "js",
     "JS",
-    "sendedError"
+    "sendedError",
+    "MessagePack",
+    "UUID"
   ]
 }
