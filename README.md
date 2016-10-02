@@ -1,11 +1,12 @@
 # Logux Sync
 
 Tool to synchronize events between [Logux logs]. It could synchronize logs
-on different machines through network, or it could do it on one machine.
+on different machines through network, or on same machine.
 
-It does authentication, events filtering, time fixing, connection diagnostics.
+Also it does authentication, events filtering, time fixing,
+connection diagnostics.
 
-Synchronization protocol: [`protocol.md`].
+Synchronization protocol specification: [`protocol.md`].
 
 ```js
 import { Client } from 'logux-sync'
