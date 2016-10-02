@@ -10,8 +10,6 @@
     "LocalPair",
     "nanoevents",
     "BaseSync",
-    "ActiveSync",
-    "PassiveSync",
     "SyncError",
     "unsubscribe",
     "authCallback",

@@ -1,20 +1,20 @@
-var PassiveSync = require('../passive-sync')
-var ActiveSync = require('../active-sync')
 var LocalPair = require('../local-pair')
 var SyncError = require('../sync-error')
 var BaseSync = require('../base-sync')
+var Server = require('../server')
+var Client = require('../client')
 var sync = require('../')
 
 it('has LocalPair class', function () {
   expect(sync.LocalPair).toBe(LocalPair)
 })
 
-it('has PassiveSync class', function () {
-  expect(sync.PassiveSync).toBe(PassiveSync)
+it('has Server class', function () {
+  expect(sync.Server).toBe(Server)
 })
 
-it('has ActiveSync class', function () {
-  expect(sync.ActiveSync).toBe(ActiveSync)
+it('has Client class', function () {
+  expect(sync.Client).toBe(Client)
 })
 
 it('has SyncError class', function () {
