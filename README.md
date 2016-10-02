@@ -38,11 +38,11 @@ const sync = new Server('server', log2, connection, {
 
 ## Connection
 
-Logux protocol could work through any encoding (JSON, MessagePack, XML)
-and any channel (WebSockets Secure, AJAX and HTTP “keep-alive”).
+Logux protocol could work through any encoding (JSON, MessagePack or XML)
+and any channel (WebSockets Secure or AJAX with HTTP “keep-alive”).
 
-All channel and encoding are located in Connection instance, Logux Sync
-will use it:
+You could create a special connection classes for different channels
+and encoding and use them with Logux Sync.
 
 ```js
 import KeepWSConnection from 'logux-ws-browser/keep-ws-connection'
@@ -50,6 +50,11 @@ const connection = new KeepWSConnection(serverUrl)
 const sync = new Client(host, log, connection, opts)
 connection.connect()
 ```
+
+Connection instance should provide `connect()` and `disconnect()`
+methods and `connect`, `disconnect` and `message` events in [NanoEvents] API.
+
+[NanoEvents]: https://github.com/ai/nanoevents
 
 ### Client and Server
 

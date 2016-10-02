@@ -22,6 +22,7 @@
     "MessagePack",
     "UUID",
     "otherSynced",
-    "CRDT"
+    "CRDT",
+    "NanoEvents"
   ]
 }
