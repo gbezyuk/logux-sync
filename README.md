@@ -172,8 +172,8 @@ If node will go offline, `synced` and `otherSynced` will be used on next
 connection to find new events to synchronization.
 
 In most cases, you don’t need to synchronize all event.
-Some client events is locally (like click or animations). Some server event
-are now allowed to be shown for every client.
+Some client events is locally (like click or animations).
+Some server event are now allowed to be shown for every client.
 
 So client and server have `inFilter` and `outFilter` options. This callbacks
 should return `true` or `false`.
@@ -226,7 +226,7 @@ new Client(host, log, connection, {
 ```
 
 All synchronization errors will be throw to be shown in terminal.
-You can process this errors and disable throwing by `catch()`:
+You can process this errors and disable throwing by `catch()` method:
 
 ```js
 client.catch(error => {
