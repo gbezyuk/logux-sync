@@ -22,6 +22,7 @@
     "JS",
     "sendedError",
     "MessagePack",
-    "UUID"
+    "UUID",
+    "otherSynced"
   ]
 }
