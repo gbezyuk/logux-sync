@@ -39,7 +39,7 @@ const sync = new Server('server', log2, connection, {
 ## Connection
 
 Logux protocol could work through any encoding (JSON, MessagePack or XML)
-and any channel (WebSockets Secure or AJAX with HTTP “keep-alive”).
+and any channel (WebSockets Secure or AJAX with HTTP “keep-alive”).
 
 You could create a special connection classes for different channels
 and encoding and use them with Logux Sync.
@@ -59,27 +59,27 @@ methods and `connect`, `disconnect` and `message` events in [NanoEvents] API.
 ### Client and Server
 
 The only difference between `Client` and `Server` is that client will
-send `connect`, when connection will be started. Server will destroy itself,
+send `connect`, when connection will be started. Server will destroy itself,
 when connection will be closed.
 
 Messages are same for client and server. If you want a different behaviour,
-you can take `BaseSync` class and make your own roles
+you can take `BaseSync` class and make your own roles
 (for example, for multi-master synchronization).
 
 ### Host Name
 
-Logux Sync is used host names only for error messages. But host names are also
-used in [default timer]. And host name uniqueness are very important
+Logux Sync uses host names only for error messages. But host names are also
+used in [default timer]. So host name uniqueness are very important
 for correct timing and log synchronization.
 
-Be sure, that you generate unique host names. For example, your back-end
+Be sure, that you use unique host names. For example, your back-end
 application could use counter to generate short and unique host name.
-Application could put this name in `<meta>` tag to use it in client JS.
+You could put this name in `<meta>` tag to use it in client JS.
 
 If you can’t generate short unique host names, [UUID] will be best way.
 
-Current host name will be saved to `host` property and other host name
-to `otherHost`.
+Current host name will be saved to `host` property. Other host name
+will be saved to `otherHost`.
 
 ```js
 console.log('Start synchronization with ' + client.otherHost)
@@ -233,6 +233,11 @@ client.catch(error => {
   showSyncError(error)
 })
 ```
+
+## Finishing
+
+When you will finish synchronization call `destroy()` method. It will remove
+all listeners and disable synchronization.
 
 ## Tests
 
