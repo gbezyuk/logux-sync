@@ -73,7 +73,7 @@ used in [default timer]. So host name uniqueness are very important
 for correct timing and log synchronization.
 
 Be sure, that you use unique host names. For example, your back-end
-application could use counter to generate short and unique host name.
+application could use counter to generate short and unique host name.
 You could put this name in `<meta>` tag to use it in client JS.
 
 If you can’t generate short unique host names, [UUID] will be best way.
@@ -122,7 +122,7 @@ new Server('server', log, connection, {
 Some clients have wrong time zone and they fixed it by setting wrong time.
 Other client could have ±10 minutes time mistake or just ignore computer time.
 
-But correct time is highly important for CRDT and many other log based things.
+But correct time is highly important for CRDT and other log based operations.
 
 This is why you can enable time fixing by `fixTime` option in client.
 Logux Sync will calculate round-trip time and compare client and server time
@@ -135,7 +135,7 @@ new Client(host, log, connection, {
 })
 ```
 
-This fix will be apply to first value in event’s `created` time before events
+This fix will be apply to events `created` time before events
 will be sent to server or received from server to log.
 
 ## State
@@ -152,8 +152,8 @@ You can get current state by `state` property and subscribe to it changes
 by `state` event:
 
 ```js
-sync.on('state', () => {
-  if (sync.state === 'wait' && sync.state === 'sending') {
+client.on('state', () => {
+  if (client.state === 'wait' && client.state === 'sending') {
     doNotCloseBrowser()
   } else {
     allowToCloseBrowser()
@@ -163,16 +163,16 @@ sync.on('state', () => {
 
 ## Synchronization
 
-After `connect` and `connected` messages, node will synchronize events.
+After `connect` and `connected` messages, nodes will synchronize events.
 
 Every node has `synced` and `otherSynced` property. It contains latest
-`added` time for sent and received events.
+`added` time from sent and received events.
 
 If node will go offline, `synced` and `otherSynced` will be used on next
 connection to find new events to synchronization.
 
-In most of cases, you don’t need to synchronize all event.
-Some client events is locally (like click or animations). So server event
+In most cases, you don’t need to synchronize all event.
+Some client events is locally (like click or animations). Some server event
 are now allowed to be shown for every client.
 
 So client and server have `inFilter` and `outFilter` options. This callbacks
@@ -202,10 +202,10 @@ and `outMap` options.
 ## Diagnostics
 
 Sometimes connection could goes down without disconnected event.
-So there is a answer for every message to be sure, that it was received.
+So there is a answer for every message to be sure, that it was received.
 
-You can set milliseconds to `timeout` option and if answer will not received
-in this time, Logux Sync will close connection and throw a error.
+You can set milliseconds `timeout` option and if answer will not received
+in this time, Logux Sync will close connection and throw a error.
 
 ```js
 new Client(host, log, connection, {
@@ -215,7 +215,7 @@ new Client(host, log, connection, {
 ```
 
 To be sure, that connection is working and you got latest state from server
-Logux Sync could send a `ping` messages. Set milliseconds to `ping` option,
+Logux Sync could send a `ping` messages. Set milliseconds `ping` option,
 how often it should test connection:
 
 ```js
@@ -226,7 +226,7 @@ new Client(host, log, connection, {
 ```
 
 All synchronization errors will be throw to be shown in terminal.
-You can process this errors and disable throwing by `catch()` method:
+You can process this errors and disable throwing by `catch()`:
 
 ```js
 client.catch(error => {
