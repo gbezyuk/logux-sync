@@ -21,6 +21,7 @@
     "sendedError",
     "MessagePack",
     "UUID",
-    "otherSynced"
+    "otherSynced",
+    "CRDT"
   ]
 }
