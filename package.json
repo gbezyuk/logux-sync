@@ -1,8 +1,12 @@
 {
   "name": "logux-sync",
   "version": "0.0.0",
-  "description": "",
-  "keywords": [],
+  "description": "Tool to synchronize events between Logux logs",
+  "keywords": [
+    "logux",
+    "synchronization",
+    "network"
+  ],
   "author": "Andrey Sitnik <andrey@sitnik.ru>",
   "license": "MIT",
   "repository": "logux/logux-sync",
