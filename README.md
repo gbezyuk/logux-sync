@@ -12,7 +12,7 @@ Synchronization protocol specification: [`protocol.md`].
 import { Client } from 'logux-sync'
 const sync = new Client('user:' + user.id + uniq, log1, connection, {
   credentials: user.token,
-  outFilter: event => event.sync,
+  outFilter: event => Promise.resolve(event.sync),
   timeout: 5000,
   fixTime: true,
   ping: 10000
@@ -176,14 +176,14 @@ Some client events is locally (like click or animations).
 Some server event are now allowed to be shown for every client.
 
 So client and server have `inFilter` and `outFilter` options. This callbacks
-should return `true` or `false`.
+should return Promise with `true` or `false`.
 
 In `outFilter` you can specify what event will be sent:
 
 ```js
 new Client(host, log, connection, {
   …
-  outFilter: event => event.sync
+  outFilter: event => Promise.resolve(event.sync)
 })
 ```
 
