@@ -13,9 +13,9 @@ import { Client } from 'logux-sync'
 const sync = new Client('user:' + user.id + uniq, log1, connection, {
   credentials: user.token,
   outFilter: event => Promise.resolve(event.sync),
-  timeout: 5000,
   fixTime: true,
-  ping: 10000
+  timeout: 5000,
+  ping: 5000
 })
 ```
 
@@ -23,8 +23,9 @@ const sync = new Client('user:' + user.id + uniq, log1, connection, {
 import { Server } from 'logux-sync'
 const sync = new Server('server', log2, connection, {
   outFilter: event => access(event),
+  auth: token => checkToken(token),
   timeout: 5000,
-  auth: token => checkToken(token)
+  ping: 10000
 })
 ```
 
