@@ -23,6 +23,8 @@
     "UUID",
     "otherSynced",
     "CRDT",
-    "NanoEvents"
+    "NanoEvents",
+    "ClientSync",
+    "ServerSync"
   ]
 }

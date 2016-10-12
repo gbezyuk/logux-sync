@@ -1,9 +1,9 @@
 module.exports = {
+  ClientSync: require('./client-sync'),
+  ServerSync: require('./server-sync'),
   LocalPair: require('./local-pair'),
   SyncError: require('./sync-error'),
-  BaseSync: require('./base-sync'),
-  Server: require('./server'),
-  Client: require('./client')
+  BaseSync: require('./base-sync')
 }
 
 /**

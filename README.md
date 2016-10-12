@@ -9,8 +9,8 @@ connection diagnostics.
 Synchronization protocol specification: [`protocol.md`].
 
 ```js
-import { Client } from 'logux-sync'
-const sync = new Client('user:' + user.id + uniq, log1, connection, {
+import { ClientSync } from 'logux-sync'
+const sync = new ClientSync('user:' + user.id + uniq, log1, connection, {
   credentials: user.token,
   outFilter: event => Promise.resolve(event.sync),
   fixTime: true,
@@ -20,8 +20,8 @@ const sync = new Client('user:' + user.id + uniq, log1, connection, {
 ```
 
 ```js
-import { Server } from 'logux-sync'
-const sync = new Server('server', log2, connection, {
+import { ServerSync } from 'logux-sync'
+const sync = new ServerSync('server', log2, connection, {
   outFilter: event => access(event),
   auth: token => checkToken(token),
   timeout: 5000,
@@ -48,7 +48,7 @@ and encoding and use them with Logux Sync.
 ```js
 import KeepWSConnection from 'logux-ws-browser/keep-ws-connection'
 const connection = new KeepWSConnection(serverUrl)
-const sync = new Client(host, log, connection, opts)
+const sync = new ClientSync(host, log, connection, opts)
 connection.connect()
 ```
 
@@ -59,7 +59,7 @@ methods and `connect`, `disconnect` and `message` events in [NanoEvents] API.
 
 ### Client and Server
 
-The only difference between `Client` and `Server` is that client will
+The only difference between `ClientSync` and `ServerSync` is that client will
 send `connect`, when connection will be started. Server will destroy itself,
 when connection will be closed.
 
@@ -96,7 +96,7 @@ could have credentials data (in most use cases only client will have it).
 And both could have a `auth` callback to authenticate this credentials data.
 
 ```js
-new Client(host, log, connection, {
+new ClientSync(host, log, connection, {
   …
   credentials: user.token
 })
@@ -108,7 +108,7 @@ Authentication callback should return a promise with `true` or `false`.
 All message from this node will wait until authentication will be finished.
 
 ```js
-new Server('server', log, connection, {
+new ServerSync('server', log, connection, {
   …
   auth: token => {
     return findUserByToken(token).then(user => {
@@ -130,7 +130,7 @@ Logux Sync will calculate round-trip time and compare client and server time
 to calculate time difference between them.
 
 ```js
-new Client(host, log, connection, {
+new ClientSync(host, log, connection, {
   …
   fixTime: true
 })
@@ -182,7 +182,7 @@ should return Promise with `true` or `false`.
 In `outFilter` you can specify what event will be sent:
 
 ```js
-new Client(host, log, connection, {
+new ClientSync(host, log, connection, {
   …
   outFilter: event => Promise.resolve(event.sync)
 })
@@ -191,7 +191,7 @@ new Client(host, log, connection, {
 In `inFilter` to can specify what events will be received:
 
 ```js
-new Server(host, log, connection, {
+new ServerSync(host, log, connection, {
   …
   inFilter: event => doesUserHaveWriteAccess(event)
 })
@@ -209,7 +209,7 @@ You can set milliseconds `timeout` option and if answer will not received
 in this time, Logux Sync will close connection and throw a error.
 
 ```js
-new Client(host, log, connection, {
+new ClientSync(host, log, connection, {
   …
   timeout: 5000
 })
@@ -220,7 +220,7 @@ Logux Sync could send a `ping` messages. Set milliseconds `ping` option,
 how often it should test connection:
 
 ```js
-new Client(host, log, connection, {
+new ClientSync(host, log, connection, {
   …
   ping: 10000
 })
@@ -247,6 +247,6 @@ all listeners and disable synchronization.
 ```js
 import { LocalPair } from 'logux-sync'
 const pair = new LocalPair()
-const client = new Client('client', log1, pair.left)
-const server = new Server('server', log2, pair.right)
+const client = new ClientSync('client', log1, pair.left)
+const server = new ServerSync('server', log2, pair.right)
 ```
