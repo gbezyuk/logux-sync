@@ -75,3 +75,10 @@ module.exports = {
  * @function
  * @memberof Connection#
  */
+/**
+ * Is connection is enabled.
+ *
+ * @name connected
+ * @type {boolean}
+ * @memberof Connection#
+ */
