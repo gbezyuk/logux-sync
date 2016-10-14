@@ -46,8 +46,8 @@ You could create a special connection classes for different channels
 and encoding and use them with Logux Sync.
 
 ```js
-import KeepWSConnection from 'logux-ws-browser/keep-ws-connection'
-const connection = new KeepWSConnection(serverUrl)
+import BrowserConnection from 'logux-websocket/browser-connection'
+const connection = new BrowserConnection(serverUrl)
 const sync = new ClientSync(host, log, connection, opts)
 connection.connect()
 ```
@@ -55,7 +55,11 @@ connection.connect()
 Connection instance should provide `connect()` and `disconnect()`
 methods and `connect`, `disconnect` and `message` events in [NanoEvents] API.
 
-[NanoEvents]: https://github.com/ai/nanoevents
+[`logux-websocket`] contains WebSockets connections for browser
+and node.js server.
+
+[`logux-websocket`]: https://github.com/logux/logux-websocket
+[NanoEvents]:        https://github.com/ai/nanoevents
 
 ### Client and Server
 
