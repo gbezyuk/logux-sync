@@ -38,12 +38,13 @@ module.exports = {
  * Subscribe for connection events. It should implement nanoevents API.
  * Supported events:
  *
+ * * `connecting`: connection establishing was started.
  * * `connect`: connection was established by any side.
  * * `disconnect`: connection was closed by any side.
  * * `message`: message was receive from other node.
  * * `error`: message was wrong.
  *
- * @param {"connect"|"disconnect"|"message"|"error"} event The event name.
+ * @param {"connecting"|"connect"|"disconnect"|"message"|"error"} event Event.
  * @param {function} listener The listener function.
  *
  * @return {function} Unbind listener from event.
