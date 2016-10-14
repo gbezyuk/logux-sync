@@ -24,7 +24,7 @@ module.exports = {
  * @abstract
  */
 /**
- * Subscribe for log events. It should implement nanoevents API.
+ * Subscribe for connection events. It should implement nanoevents API.
  * Supported events:
  *
  * * `connect`: connection was established by any side.
