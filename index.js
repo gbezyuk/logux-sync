@@ -24,6 +24,17 @@ module.exports = {
  * @abstract
  */
 /**
+ * Send message to connection.
+ *
+ * @param {Message} message Message to be sent
+ *
+ * @return {undefined}
+ *
+ * @name send
+ * @function
+ * @memberof Connection#
+ */
+/**
  * Subscribe for connection events. It should implement nanoevents API.
  * Supported events:
  *
