@@ -1,9 +1,15 @@
+var ClientSync = require('./client-sync')
+var ServerSync = require('./server-sync')
+var LocalPair = require('./local-pair')
+var SyncError = require('./sync-error')
+var BaseSync = require('./base-sync')
+
 module.exports = {
-  ClientSync: require('./client-sync'),
-  ServerSync: require('./server-sync'),
-  LocalPair: require('./local-pair'),
-  SyncError: require('./sync-error'),
-  BaseSync: require('./base-sync')
+  ClientSync: ClientSync,
+  ServerSync: ServerSync,
+  LocalPair: LocalPair,
+  SyncError: SyncError,
+  BaseSync: BaseSync
 }
 
 /**
