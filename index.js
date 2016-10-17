@@ -2,6 +2,7 @@ var ClientSync = require('./client-sync')
 var ServerSync = require('./server-sync')
 var LocalPair = require('./local-pair')
 var SyncError = require('./sync-error')
+var Reconnect = require('./reconnect')
 var BaseSync = require('./base-sync')
 
 module.exports = {
@@ -9,6 +10,7 @@ module.exports = {
   ServerSync: ServerSync,
   LocalPair: LocalPair,
   SyncError: SyncError,
+  Reconnect: Reconnect,
   BaseSync: BaseSync
 }
 
@@ -75,7 +77,7 @@ module.exports = {
  * Finish current connection.
  *
  * After disconnection, connection could be started again
- * by @{link Connection#connect}.
+ * by {@link Connection#connect}.
  *
  * @return {undefined}
  *

@@ -2,6 +2,7 @@ var ClientSync = require('../client-sync')
 var ServerSync = require('../server-sync')
 var LocalPair = require('../local-pair')
 var SyncError = require('../sync-error')
+var Reconnect = require('../reconnect')
 var BaseSync = require('../base-sync')
 var sync = require('../')
 
@@ -19,6 +20,10 @@ it('has ClientSync class', function () {
 
 it('has SyncError class', function () {
   expect(sync.SyncError).toBe(SyncError)
+})
+
+it('has Reconnect class', function () {
+  expect(sync.Reconnect).toBe(Reconnect)
 })
 
 it('has BaseSync class', function () {

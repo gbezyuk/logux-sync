@@ -25,6 +25,7 @@
     "CRDT",
     "NanoEvents",
     "ClientSync",
-    "ServerSync"
+    "ServerSync",
+    "reconnectable"
   ]
 }
