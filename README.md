@@ -9,7 +9,8 @@ connection diagnostics.
 Synchronization protocol specification: [`protocol.md`].
 
 ```js
-import { ClientSync } from 'logux-sync'
+import { ClientSync, BrowserConnection } from 'logux-sync'
+const connection = new BrowserConnection('wss://logux.example.com')
 const sync = new ClientSync('user:' + user.id + uniq, log1, connection, {
   credentials: user.token,
   outFilter: event => Promise.resolve(event.sync),
@@ -20,12 +21,15 @@ const sync = new ClientSync('user:' + user.id + uniq, log1, connection, {
 ```
 
 ```js
-import { ServerSync } from 'logux-sync'
-const sync = new ServerSync('server', log2, connection, {
-  outFilter: event => access(event),
-  auth: token => checkToken(token),
-  timeout: 5000,
-  ping: 10000
+import { ServerSync, ServerConnection } from 'logux-sync'
+wss.on('connection', function connection (ws) {
+  const connection = new ServerConnection(ws)
+  const sync = new ServerSync('server', log2, connection, {
+    outFilter: event => access(event),
+    auth: token => checkToken(token),
+    timeout: 5000,
+    ping: 10000
+  })
 })
 ```
 
@@ -39,7 +43,7 @@ const sync = new ServerSync('server', log2, connection, {
 
 ## Connection
 
-Logux protocol could work through any encoding (JSON, MessagePack or XML)
+Logux protocol could work through any encoding (JSON or XML)
 and any channel (WebSockets Secure or AJAX with HTTP “keep-alive”).
 
 You could create a special connection classes for different channels
@@ -55,11 +59,15 @@ connection.connect()
 Connection instance should provide `connect()` and `disconnect()`
 methods and `connect`, `disconnect` and `message` events in [NanoEvents] API.
 
-[`logux-websocket`] contains WebSockets connections for browser
-and node.js server.
+[NanoEvents]: https://github.com/ai/nanoevents
 
-[`logux-websocket`]: https://github.com/logux/logux-websocket
-[NanoEvents]:        https://github.com/ai/nanoevents
+### WebSocket
+
+Some old proxy could block WebSocket protocol.
+It is one of reason, why we highly recommend to use `wss://` over `ws://`.
+
+WebSocket Secure is a “HTTPS” for WebSocket. In first hand, it increase
+user security. In other hand, it protects you from problems with proxies.
 
 ### Client and Server
 
