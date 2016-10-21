@@ -13,10 +13,7 @@ import { ClientSync, BrowserConnection } from 'logux-sync'
 const connection = new BrowserConnection('wss://logux.example.com')
 const sync = new ClientSync('user:' + user.id + uniq, log1, connection, {
   credentials: user.token,
-  outFilter: event => Promise.resolve(event.sync),
-  fixTime: true,
-  timeout: 5000,
-  ping: 5000
+  outFilter: event => Promise.resolve(event.sync)
 })
 ```
 
@@ -26,9 +23,7 @@ wss.on('connection', function connection (ws) {
   const connection = new ServerConnection(ws)
   const sync = new ServerSync('server', log2, connection, {
     outFilter: event => access(event),
-    auth: token => checkToken(token),
-    timeout: 5000,
-    ping: 10000
+    auth: token => checkToken(token)
   })
 })
 ```
