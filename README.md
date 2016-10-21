@@ -9,16 +9,23 @@ connection diagnostics.
 Synchronization protocol specification: [`protocol.md`].
 
 ```js
-import { ClientSync, BrowserConnection } from 'logux-sync'
+import BrowserConnection from 'logux-sync/browser-connection'
+import ClientSync from 'logux-sync/client-sync'
+import Reconnect from 'logux-sync/reconnect'
+
 const connection = new BrowserConnection('wss://logux.example.com')
+const reconnect  = new Reconnect(connection)
 const sync = new ClientSync('user:' + user.id + uniq, log1, connection, {
   credentials: user.token,
   outFilter: event => Promise.resolve(event.sync)
 })
+
+reconnect.connect()
 ```
 
 ```js
 import { ServerSync, ServerConnection } from 'logux-sync'
+
 wss.on('connection', function connection (ws) {
   const connection = new ServerConnection(ws)
   const sync = new ServerSync('server', log2, connection, {
@@ -63,6 +70,18 @@ It is one of reason, why we highly recommend to use `wss://` over `ws://`.
 
 WebSocket Secure is a “HTTPS” for WebSocket. In first hand, it increase
 user security. In other hand, it protects you from problems with proxies.
+
+### Reconnect
+
+Logux Sync has special wrapper classes, which will automatically connect
+connection again:
+
+```js
+const reconnect = new Reconnect(connection, {
+  minDelay: 0,
+  attempts: 10
+})
+```
 
 ### Client and Server
 
