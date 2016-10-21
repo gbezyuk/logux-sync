@@ -1,3 +1,5 @@
+var BrowserConnection = require('../browser-connection')
+var ServerConnection = require('../server-connection')
 var ClientSync = require('../client-sync')
 var ServerSync = require('../server-sync')
 var LocalPair = require('../local-pair')
@@ -6,8 +8,12 @@ var Reconnect = require('../reconnect')
 var BaseSync = require('../base-sync')
 var sync = require('../')
 
-it('has LocalPair class', function () {
-  expect(sync.LocalPair).toBe(LocalPair)
+it('has BrowserConnection class', function () {
+  expect(sync.BrowserConnection).toBe(BrowserConnection)
+})
+
+it('has ServerConnection class', function () {
+  expect(sync.ServerConnection).toBe(ServerConnection)
 })
 
 it('has ServerSync class', function () {
@@ -16,6 +22,10 @@ it('has ServerSync class', function () {
 
 it('has ClientSync class', function () {
   expect(sync.ClientSync).toBe(ClientSync)
+})
+
+it('has LocalPair class', function () {
+  expect(sync.LocalPair).toBe(LocalPair)
 })
 
 it('has SyncError class', function () {

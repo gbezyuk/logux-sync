@@ -1,3 +1,5 @@
+var BrowserConnection = require('./browser-connection')
+var ServerConnection = require('./server-connection')
 var ClientSync = require('./client-sync')
 var ServerSync = require('./server-sync')
 var LocalPair = require('./local-pair')
@@ -6,6 +8,8 @@ var Reconnect = require('./reconnect')
 var BaseSync = require('./base-sync')
 
 module.exports = {
+  BrowserConnection: BrowserConnection,
+  ServerConnection: ServerConnection,
   ClientSync: ClientSync,
   ServerSync: ServerSync,
   LocalPair: LocalPair,

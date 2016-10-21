@@ -26,6 +26,9 @@
     "NanoEvents",
     "ClientSync",
     "ServerSync",
-    "reconnectable"
+    "reconnectable",
+    "BrowserConnection",
+    "ServerConnection",
+    "ws"
   ]
 }
