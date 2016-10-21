@@ -21,7 +21,7 @@
     "eslint-config-standard": "^6.2.0",
     "eslint-plugin-promise": "^3.3.0",
     "eslint-plugin-standard": "^2.0.1",
-    "jest": "^16.0.1",
+    "jest": "^16.0.2",
     "jsdoc": "^3.4.2",
     "lint-staged": "^3.2.0",
     "logux-core": "logux/logux-core",
@@ -33,7 +33,7 @@
   "scripts": {
     "lint-staged": "lint-staged",
     "spellcheck": "npm run cleandocs && yaspeller *.md docs/*.html",
-    "cleandocs": "npm run docs && rm docs/*.js.html",
+    "cleandocs": "npm run docs && rimraf docs/*.js.html",
     "clean": "rimraf docs/ coverage/",
     "lint": "eslint *.js test/*.js messages/*.js",
     "docs": "jsdoc --configure .jsdocrc *.js",
