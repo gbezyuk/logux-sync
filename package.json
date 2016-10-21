@@ -32,7 +32,8 @@
   },
   "scripts": {
     "lint-staged": "lint-staged",
-    "spellcheck": "npm run docs && yaspeller *.md docs/*.html",
+    "spellcheck": "npm run cleandocs && yaspeller *.md docs/*.html",
+    "cleandocs": "npm run docs && rm docs/*.js.html",
     "clean": "rimraf docs/ coverage/",
     "lint": "eslint *.js test/*.js messages/*.js",
     "docs": "jsdoc --configure .jsdocrc *.js",
