@@ -18,7 +18,6 @@
     "otherProtocol",
     "js",
     "JS",
-    "sendedError",
     "UUID",
     "otherSynced",
     "CRDT",
@@ -28,6 +27,7 @@
     "reconnectable",
     "BrowserConnection",
     "ServerConnection",
-    "ws"
+    "ws",
+    "clientError"
   ]
 }
