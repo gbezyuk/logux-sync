@@ -16,6 +16,7 @@ import Reconnect from 'logux-sync/reconnect'
 const connection = new BrowserConnection('wss://logux.example.com')
 const reconnect  = new Reconnect(connection)
 const sync = new ClientSync('user:' + user.id + uniq, log1, connection, {
+  subprotocol: [3, 0]
   credentials: user.token,
   outFilter: event => Promise.resolve(event.sync)
 })
@@ -29,6 +30,8 @@ import { ServerSync, ServerConnection } from 'logux-sync'
 wss.on('connection', function connection (ws) {
   const connection = new ServerConnection(ws)
   const sync = new ServerSync('server', log2, connection, {
+    subprotocol: [3, 1],
+    supports: [3, 2],
     outFilter: event => access(event),
     auth: token => checkToken(token)
   })
@@ -114,6 +117,44 @@ console.log('Start synchronization with ' + client.otherHost)
 
 [default timer]: https://github.com/logux/logux-core#created-time
 [UUID]:          https://github.com/broofa/node-uuid
+
+### Subprotocol Versions
+
+Subprotocol is a application protocol, which you build on top of Logux.
+Events data and expected reactions on this events.
+
+In future you may change event types or options. But some clients could
+use old code for some time.
+
+In this case you can set subprotocol version to Logux Sync.
+It is a `[number major, number minor]` array:
+
+```js
+new ClientSync(host, log, connection, {
+  …
+  subprotocol: [3, 1]
+})
+```
+
+And Logux will send this version from client to server and from server
+to client. Other node subprotocol will be saved to `otherSubprotocol`:
+
+```js
+if (sync.otherSubprotocol[0] < 4) {
+  useOldAPI()
+}
+```
+
+You can set supported subprotocol major versions and Logux Sync will
+send `wrong-subprotocol` on wrong version:
+
+```js
+new ServerSync(host, log, connection, {
+  …
+  subprotocol: [4, 0]
+  supports: [4, 3, 2]
+})
+```
 
 ### Authentication
 

@@ -28,6 +28,8 @@
     "BrowserConnection",
     "ServerConnection",
     "ws",
-    "clientError"
+    "clientError",
+    "otherSubprotocol",
+    "protocol"
   ]
 }
