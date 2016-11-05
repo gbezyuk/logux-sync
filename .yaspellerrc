@@ -14,7 +14,6 @@
     "unsubscribe",
     "authCallback",
     "errorListener",
-    "otherHost",
     "otherProtocol",
     "js",
     "JS",
@@ -30,6 +29,8 @@
     "ws",
     "clientError",
     "otherSubprotocol",
-    "protocol"
+    "protocol",
+    "uniqName",
+    "otherUniqName"
   ]
 }

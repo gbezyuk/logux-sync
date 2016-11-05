@@ -15,7 +15,7 @@ import Reconnect from 'logux-sync/reconnect'
 
 const connection = new BrowserConnection('wss://logux.example.com')
 const reconnect  = new Reconnect(connection)
-const sync = new ClientSync('user:' + user.id + uniq, log1, connection, {
+const sync = new ClientSync('user' + user.id + ':' + uuid, log1, connection, {
   subprotocol: [3, 0]
   credentials: user.token,
   outFilter: event => Promise.resolve(event.sync)
@@ -57,7 +57,7 @@ and encoding and use them with Logux Sync.
 ```js
 import BrowserConnection from 'logux-websocket/browser-connection'
 const connection = new BrowserConnection(serverUrl)
-const sync = new ClientSync(host, log, connection, opts)
+const sync = new ClientSync(uniqName, log, connection, opts)
 connection.connect()
 ```
 
@@ -96,23 +96,23 @@ Messages are same for client and server. If you want a different behaviour,
 you can take `BaseSync` class and make your own roles
 (for example, for multi-master synchronization).
 
-### Host Name
+### Node Name
 
-Logux Sync uses host names only for error messages. But host names are also
-used in [default timer]. So host name uniqueness are very important
+Logux Sync uses node names only for error messages. But node names are also
+used in [default timer]. So node name uniqueness are very important
 for correct timing and log synchronization.
 
-Be sure, that you use unique host names. For example, your back-end
-application could use counter to generate short and unique host name.
+Be sure, that you use unique node names. For example, your back-end
+application could use counter to generate short and unique names.
 You could put this name in `<meta>` tag to use it in client JS.
 
-If you can’t generate short unique host names, [UUID] will be best way.
+If you can’t generate short unique names, [UUID] will be best way.
 
-Current host name will be saved to `host` property. Other host name
-will be saved to `otherHost`.
+Current node name will be saved to `uniqName` property. Other node name
+will be saved to `otherUniqName`.
 
 ```js
-console.log('Start synchronization with ' + client.otherHost)
+console.log('Start synchronization with ' + client.otherUniqName)
 ```
 
 [default timer]: https://github.com/logux/logux-core#created-time
@@ -130,7 +130,7 @@ In this case you can set subprotocol version to Logux Sync.
 It is a `[number major, number minor]` array:
 
 ```js
-new ClientSync(host, log, connection, {
+new ClientSync(uniqName, log, connection, {
   …
   subprotocol: [3, 1]
 })
@@ -149,7 +149,7 @@ You can set supported subprotocol major versions and Logux Sync will
 send `wrong-subprotocol` on wrong version:
 
 ```js
-new ServerSync(host, log, connection, {
+new ServerSync(uniqName, log, connection, {
   …
   subprotocol: [4, 0]
   supports: [4, 3, 2]
@@ -163,7 +163,7 @@ could have credentials data (in most use cases only client will have it).
 And both could have a `auth` callback to authenticate this credentials data.
 
 ```js
-new ClientSync(host, log, connection, {
+new ClientSync(uniqName, log, connection, {
   …
   credentials: user.token
 })
@@ -197,7 +197,7 @@ Logux Sync will calculate round-trip time and compare client and server time
 to calculate time difference between them.
 
 ```js
-new ClientSync(host, log, connection, {
+new ClientSync(uniqName, log, connection, {
   …
   fixTime: true
 })
@@ -249,7 +249,7 @@ should return Promise with `true` or `false`.
 In `outFilter` you can specify what event will be sent:
 
 ```js
-new ClientSync(host, log, connection, {
+new ClientSync(uniqName, log, connection, {
   …
   outFilter: event => Promise.resolve(event.sync)
 })
@@ -258,7 +258,7 @@ new ClientSync(host, log, connection, {
 In `inFilter` to can specify what events will be received:
 
 ```js
-new ServerSync(host, log, connection, {
+new ServerSync(uniqName, log, connection, {
   …
   inFilter: event => doesUserHaveWriteAccess(event)
 })
@@ -276,7 +276,7 @@ You can set milliseconds `timeout` option and if answer will not received
 in this time, Logux Sync will close connection and throw a error.
 
 ```js
-new ClientSync(host, log, connection, {
+new ClientSync(uniqName, log, connection, {
   …
   timeout: 5000
 })
@@ -287,7 +287,7 @@ Logux Sync could send a `ping` messages. Set milliseconds `ping` option,
 how often it should test connection:
 
 ```js
-new ClientSync(host, log, connection, {
+new ClientSync(uniqName, log, connection, {
   …
   ping: 10000
 })
