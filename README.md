@@ -57,7 +57,7 @@ and encoding and use them with Logux Sync.
 ```js
 import BrowserConnection from 'logux-websocket/browser-connection'
 const connection = new BrowserConnection(serverUrl)
-const sync = new ClientSync(uniqName, log, connection, opts)
+const sync = new ClientSync(nodeId, log, connection, opts)
 connection.connect()
 ```
 
@@ -108,11 +108,11 @@ You could put this name in `<meta>` tag to use it in client JS.
 
 If you can’t generate short unique names, [UUID] will be best way.
 
-Current node name will be saved to `uniqName` property. Other node name
-will be saved to `otherUniqName`.
+Current node name will be saved to `nodeId` property. Other node name
+will be saved to `otherNodeId`.
 
 ```js
-console.log('Start synchronization with ' + client.otherUniqName)
+console.log('Start synchronization with ' + client.otherNodeId)
 ```
 
 [default timer]: https://github.com/logux/logux-core#created-time
@@ -130,7 +130,7 @@ In this case you can set subprotocol version to Logux Sync.
 It is a `[number major, number minor]` array:
 
 ```js
-new ClientSync(uniqName, log, connection, {
+new ClientSync(nodeId, log, connection, {
   …
   subprotocol: [3, 1]
 })
@@ -149,7 +149,7 @@ You can set supported subprotocol major versions and Logux Sync will
 send `wrong-subprotocol` on wrong version:
 
 ```js
-new ServerSync(uniqName, log, connection, {
+new ServerSync(nodeId, log, connection, {
   …
   subprotocol: [4, 0]
   supports: [4, 3, 2]
@@ -163,7 +163,7 @@ could have credentials data (in most use cases only client will have it).
 And both could have a `auth` callback to authenticate this credentials data.
 
 ```js
-new ClientSync(uniqName, log, connection, {
+new ClientSync(nodeId, log, connection, {
   …
   credentials: user.token
 })
@@ -197,7 +197,7 @@ Logux Sync will calculate round-trip time and compare client and server time
 to calculate time difference between them.
 
 ```js
-new ClientSync(uniqName, log, connection, {
+new ClientSync(nodeId, log, connection, {
   …
   fixTime: true
 })
@@ -249,7 +249,7 @@ should return Promise with `true` or `false`.
 In `outFilter` you can specify what event will be sent:
 
 ```js
-new ClientSync(uniqName, log, connection, {
+new ClientSync(nodeId, log, connection, {
   …
   outFilter: event => Promise.resolve(event.sync)
 })
@@ -258,7 +258,7 @@ new ClientSync(uniqName, log, connection, {
 In `inFilter` to can specify what events will be received:
 
 ```js
-new ServerSync(uniqName, log, connection, {
+new ServerSync(nodeId, log, connection, {
   …
   inFilter: event => doesUserHaveWriteAccess(event)
 })
@@ -276,7 +276,7 @@ You can set milliseconds `timeout` option and if answer will not received
 in this time, Logux Sync will close connection and throw a error.
 
 ```js
-new ClientSync(uniqName, log, connection, {
+new ClientSync(nodeId, log, connection, {
   …
   timeout: 5000
 })
@@ -287,7 +287,7 @@ Logux Sync could send a `ping` messages. Set milliseconds `ping` option,
 how often it should test connection:
 
 ```js
-new ClientSync(uniqName, log, connection, {
+new ClientSync(nodeId, log, connection, {
   …
   ping: 10000
 })

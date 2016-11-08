@@ -30,7 +30,7 @@
     "clientError",
     "otherSubprotocol",
     "protocol",
-    "uniqName",
-    "otherUniqName"
+    "nodeId",
+    "otherNodeId"
   ]
 }
