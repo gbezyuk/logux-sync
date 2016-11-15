@@ -31,6 +31,7 @@
     "otherSubprotocol",
     "protocol",
     "nodeId",
-    "otherNodeId"
+    "otherNodeId",
+    "SemVer"
   ]
 }
