@@ -16,7 +16,7 @@ import Reconnect from 'logux-sync/reconnect'
 const connection = new BrowserConnection('wss://logux.example.com')
 const reconnect  = new Reconnect(connection)
 const sync = new ClientSync('user' + user.id + ':' + uuid, log1, connection, {
-  subprotocol: [3, 0]
+  subprotocol: [3, 0],
   credentials: user.token,
   outFilter: event => Promise.resolve(event.sync)
 })
@@ -31,7 +31,6 @@ wss.on('connection', function connection (ws) {
   const connection = new ServerConnection(ws)
   const sync = new ServerSync('server', log2, connection, {
     subprotocol: [3, 1],
-    supports: [3, 2],
     outFilter: event => access(event),
     auth: token => checkToken(token)
   })
@@ -140,19 +139,23 @@ And Logux will send this version from client to server and from server
 to client. Other node subprotocol will be saved to `otherSubprotocol`:
 
 ```js
-if (sync.otherSubprotocol[0] < 4) {
+if (semver.satisfies(sync.otherSubprotocol[0], '4.x')) {
   useOldAPI()
 }
 ```
 
-You can set supported subprotocol major versions and Logux Sync will
-send `wrong-subprotocol` on wrong version:
+You can check supported subprotocol in `connect` event
+and send `wrong-subprotocol` on wrong version:
 
 ```js
-new ServerSync(nodeId, log, connection, {
-  …
-  subprotocol: [4, 0]
-  supports: [4, 3, 2]
+import SyncError from 'logux-sync/sync-error'
+sync.on('connect', () => {
+  if (!semver.satisfies(sync.otherSubprotocol, '>= 4.0.0')) {
+    throw new SyncError(sync, 'wrong-subprotocol', {
+      supported: '>= 4.0.0',
+      used: sync.otherSubprotocol
+    })
+  }
 })
 ```
 
