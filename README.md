@@ -224,7 +224,7 @@ by `state` event:
 
 ```js
 client.on('state', () => {
-  if (client.state === 'wait' && client.state === 'sending') {
+  if (client.state === 'wait' || client.state === 'sending') {
     doNotCloseBrowser()
   } else {
     allowToCloseBrowser()
