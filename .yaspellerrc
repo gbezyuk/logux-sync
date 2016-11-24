@@ -32,6 +32,7 @@
     "protocol",
     "nodeId",
     "otherNodeId",
-    "SemVer"
+    "SemVer",
+    "Versioning"
   ]
 }
