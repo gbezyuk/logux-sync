@@ -30,6 +30,8 @@
     "clientError",
     "otherSubprotocol",
     "protocol",
+    "timestamp",
+    "timestamps",
     "nodeId",
     "otherNodeId",
     "SemVer",
